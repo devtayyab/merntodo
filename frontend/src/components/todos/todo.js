@@ -1,9 +1,11 @@
 import React from 'react'
-
+import Addtodo from './addtodo'
+import Listtodo from './Listtodo'
 export default function Todo() {
     return (
         <div>
-            Todo
+            <Addtodo/>
+            <Listtodo/>
         </div>
     )
 }

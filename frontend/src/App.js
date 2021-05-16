@@ -5,8 +5,10 @@ import Navbar from './components/navbar/navbar.js'
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Todo from './components/todos/todo';
+import {Container} from '@material-ui/core'
 function App() {
   return (
+    <Container>
     <div className="App">
 
      <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
         </Switch>
      </BrowserRouter>
     </div>
+    </Container>
   );
 }
 
