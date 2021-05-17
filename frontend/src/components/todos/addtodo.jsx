@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
@@ -21,16 +21,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Addtodo() {
   const classes = useStyles();
+  const [todo, settodo]= useState({
+    name : "",
+    iscomplete: false
+  })
+const handleChange =(e) =>{
+    e.preventDefault()
+    console.log(todo)
+    settodo({
+      name : "",
+      iscomplete: false
+    })
 
+}
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleChange}>
       <Card>
       <TextField id="standard-basic"
        label="Enter Todo"
        autoFocus="true"
-       onChange={(e)=>e}
+       value ={todo.name}
+       onChange={(e)=>settodo({...todo , name : e.target.value , date : new Date()})}
         />
-    <Button >
+    <Button type='submit'>
      <SendIcon color='primary'></SendIcon>
      </Button>
      </Card>
