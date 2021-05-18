@@ -2,7 +2,7 @@ import React , {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {gettodo} from '../store/action/todoaction'
 import Todos from './todos'
-export default function Listtodo() {
+export default function Listtodo({settodo}) {
  
   const dispatch = useDispatch();
   const todos = useSelector((state)=>state.todos)
@@ -18,7 +18,7 @@ export default function Listtodo() {
             <br></br>
             {todos.map((todo)=>{
               return(
-                <Todos todo={todo} key={todo.key}></Todos>
+                <Todos todo={todo} key={todo._id} settodo={settodo} ></Todos>
               )
             })}
        

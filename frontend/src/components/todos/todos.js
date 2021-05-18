@@ -1,4 +1,6 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
+import {checkedtodo} from '../store/action/todoaction'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -37,22 +39,29 @@ const useStyles = makeStyles({
   }
 });
 
-const Todos =(todo)=>{
-
+const Todos =({todo, settodo})=>{
+const dispatch = useDispatch();
     const classes = useStyles();
+  const  handleupdate =()=>{
+    settodo(todo)
+  }
+  const checked=(id)=>{
+    dispatch(checkedtodo(id))
+
+  }
 return (
     <Card className={classes.root}>
       
     <CardContent>
-      <Typography className={todo.todo.iscomplete ? classes.checked : null} color="textSecondary" gutterBottom>
-      {todo.todo.name}
+      <Typography className={todo.iscomplete ? classes.checked : null} color="textSecondary" gutterBottom>
+      {todo.name}
       </Typography>
      
       <Typography className={classes.pos} color="textSecondary">
         author : tayyab
       </Typography>
       <Typography variant="body2" component="p">
-        added : {moment(todo.todo.date).fromNow()}
+        added : {moment(todo.date).fromNow()}
         <br />
       </Typography>
     </CardContent>
@@ -60,10 +69,11 @@ return (
       <Button size="small" className={classes.bullet}>
       <DeleteSweepIcon/>
       </Button>
-      <Button size="small" className={classes.bullet}>
+      <Button size="small" className={classes.bullet} onClick={()=>handleupdate()}>
       <EditTwoToneIcon/>
       </Button>
-      <Button size="small" className={todo.todo.iscomplete ? classes.complete : null}>
+      <Button size="small" className={todo.iscomplete ? classes.complete : null} 
+      onClick={checked(todo._id)}>
       <DoneAllTwoToneIcon/>
       </Button>
     </CardActions>

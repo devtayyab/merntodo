@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 import { Button , Card, Paper} from '@material-ui/core';
-import {addtodo} from '../store/action/todoaction'
+import {addtodo,updatetodo} from '../store/action/todoaction'
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -20,17 +20,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Addtodo() {
+export default function Addtodo({todo, settodo}) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [todo, settodo]= useState({
-    name : "",
-    iscomplete: false
-  })
+ 
 const handleChange =(e) =>{
     e.preventDefault()
     console.log(todo)
+    if (todo._id){
+      const updates ={
+        name: todo.name,
+        date: new Date(),
+        iscomplete: todo.iscomplete,
+
+      }
+        dispatch(updatetodo(updates, todo._id))
+    }else{
     dispatch(addtodo(todo))
+    }
     settodo({
       name : "",
       iscomplete: false
