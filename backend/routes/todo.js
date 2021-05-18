@@ -4,7 +4,7 @@ const auth = require('../middleware/auth')
 const express = require('express')
 const { Schema } = require('mongoose')
 const router = express.Router()
-router.get('/', auth,  async(req, res)=>{
+router.get('/',   async(req, res)=>{
     try{
  const todos = await Todo.find()
  .sort({date: -1})

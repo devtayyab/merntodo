@@ -1,63 +1,27 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
-import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
-import DoneAllTwoToneIcon from '@material-ui/icons/DoneAllTwoTone';
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    maxWidth:'500px',
-    display: 'inline-flex'
-  },
-  bullet: {
-    
-  },
-  action:{
-    display: 'block'
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
-
+import React , {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
+import {gettodo} from '../store/action/todoaction'
+import Todos from './todos'
 export default function Listtodo() {
-  const classes = useStyles();
+ 
+  const dispatch = useDispatch();
+  const todos = useSelector((state)=>state.todos)
+  console.log(todos)
+  useEffect(() => {
+   dispatch(gettodo())
+  }, [dispatch])
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Learn React
-        </Typography>
+
+      <div>
+            {todos.length >0 ? "The Todos" : 'No todos Available'}
+            <br></br>
+            {todos.map((todo)=>{
+              return(
+                <Todos todo={todo} key={todo.key}></Todos>
+              )
+            })}
        
-        <Typography className={classes.pos} color="textSecondary">
-          author : tayyab
-        </Typography>
-        <Typography variant="body2" component="p">
-          added : 4 days ago
-          <br />
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.action}>
-        <Button size="small" className={classes.bullet}>
-        <DeleteSweepIcon/>
-        </Button>
-        <Button size="small" className={classes.bullet}>
-        <EditTwoToneIcon/>
-        </Button>
-        <Button size="small" className={classes.bullet}>
-        <DoneAllTwoToneIcon/>
-        </Button>
-      </CardActions>
-    </Card>
+        </div>
   );
 }

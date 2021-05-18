@@ -4,7 +4,7 @@ const todoSchema = new mangoose.Schema({
     name : {type : String , required : true , minlength : 3, maxlength: 200},
     author : String,
     uid :String, 
-    isComplete : Boolean,
+    iscomplete : Boolean,
     date: {type : Date , default : new Date()}
 })
 
