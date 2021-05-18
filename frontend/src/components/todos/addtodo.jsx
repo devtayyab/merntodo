@@ -45,7 +45,7 @@ const handleChange =(e) =>{
        label="Enter Todo"
        autoFocus={true}
        value ={todo.name}
-       onChange={(e)=>settodo({...todo , name : e.target.value , date : new Date()})}
+       onChange={(e)=>settodo({...todo , name : e.target.value , date : new Date() ,  iscomplete: false})}
         />
     <Button type='submit'>
      <SendIcon color='primary'></SendIcon>

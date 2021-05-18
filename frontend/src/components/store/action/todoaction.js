@@ -13,7 +13,7 @@ export const gettodo = () =>{
             }) 
         })
         .catch(error=>{
-        console.log(error.response)
+        console.log(error)
         })
     }
 }
@@ -30,7 +30,24 @@ export const addtodo = (todo) =>{
             }) 
         })
         .catch(error=>{
-        console.log(error.response)
+        console.log(error)
+        })
+    }
+}
+export const addtodo = (todo,id) =>{
+    console.log(todo)
+    return(dispatch) =>{
+
+        axios
+        .put(`${url}/todos/${id}`, updatetodo)
+        .then(todo => {
+            dispatch({
+                type : "UPDATE_TODO",
+                todo
+            }) 
+        })
+        .catch(error=>{
+        console.log(error)
         })
     }
 }

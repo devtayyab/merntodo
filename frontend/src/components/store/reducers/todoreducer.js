@@ -7,6 +7,8 @@ const todoreducer = (state =[] , action) =>{
             return action.todos.data 
             case "ADD_TODO":
             return [action.todo.data, ...state]
+            case "UPDATE_TODO":
+                return console.log(action)
             default:
                 return state
     }

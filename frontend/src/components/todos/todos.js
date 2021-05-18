@@ -29,6 +29,12 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  complete:{
+    color: "green"
+  },
+  checked: {
+    textDecoration: 'line-through'
+  }
 });
 
 const Todos =(todo)=>{
@@ -38,12 +44,12 @@ return (
     <Card className={classes.root}>
       
     <CardContent>
-      <Typography className={classes.title} color="textSecondary" gutterBottom>
-        Learn React
+      <Typography className={todo.todo.iscomplete ? classes.checked : null} color="textSecondary" gutterBottom>
+      {todo.todo.name}
       </Typography>
      
       <Typography className={classes.pos} color="textSecondary">
-        author : {todo.todo.name}
+        author : tayyab
       </Typography>
       <Typography variant="body2" component="p">
         added : {moment(todo.todo.date).fromNow()}
@@ -57,7 +63,7 @@ return (
       <Button size="small" className={classes.bullet}>
       <EditTwoToneIcon/>
       </Button>
-      <Button size="small" className={classes.bullet}>
+      <Button size="small" className={todo.todo.iscomplete ? classes.complete : null}>
       <DoneAllTwoToneIcon/>
       </Button>
     </CardActions>
