@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import {checkedtodo} from '../store/action/todoaction'
+import {checkedtodo,deletetodo} from '../store/action/todoaction'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -49,11 +49,15 @@ const dispatch = useDispatch();
     dispatch(checkedtodo(id))
 
   }
+  const deletetod = (id)=>{
+    dispatch(deletetodo(id))
+  }
 return (
     <Card className={classes.root}>
       
     <CardContent>
-      <Typography className={todo.iscomplete ? classes.checked : null} color="textSecondary" gutterBottom>
+      <Typography className={todo.iscomplete ? classes.checked : null} 
+      color="textSecondary" gutterBottom>
       {todo.name}
       </Typography>
      
@@ -66,14 +70,14 @@ return (
       </Typography>
     </CardContent>
     <CardActions className={classes.action}>
-      <Button size="small" className={classes.bullet}>
+      <Button size="small" className={classes.bullet} onClick={()=>deletetod(todo._id)}>
       <DeleteSweepIcon/>
       </Button>
       <Button size="small" className={classes.bullet} onClick={()=>handleupdate()}>
       <EditTwoToneIcon/>
       </Button>
       <Button size="small" className={todo.iscomplete ? classes.complete : null} 
-      onClick={checked(todo._id)}>
+      onClick={()=>checked(todo._id)}>
       <DoneAllTwoToneIcon/>
       </Button>
     </CardActions>

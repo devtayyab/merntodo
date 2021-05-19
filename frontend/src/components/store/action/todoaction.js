@@ -79,3 +79,23 @@ export const checkedtodo = (id) =>{
         })
     }
 }
+export const deletetodo = (id) =>{
+    
+    return(dispatch) =>{
+
+        axios
+        .delete(`${url}/todos/${id}`)
+        .then(() => {
+            dispatch({
+                type : "DELETE_TODO",
+                id
+            }) 
+        })
+        .catch(error=>{
+        console.log(error)
+        toast.error(error.response?.data, {
+            position: toast.POSITION.BOTTOM_RIGHT
+        })
+        })
+    }
+}
