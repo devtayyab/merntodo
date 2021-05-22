@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect,useHistory} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {Button, Card} from '@material-ui/core'
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signin() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const auth = useSelector(state => state.user)
   console.log(auth)
   const classes = useStyles();
@@ -26,6 +27,7 @@ export default function Signin() {
   const LogIn = (e)=>{
     // e.preventDefault()
     dispatch(signin(user))
+    history.goBack();
   }
   if (auth.token) return <Redirect to="/"></Redirect>
   return (

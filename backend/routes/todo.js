@@ -4,6 +4,7 @@ const auth = require('../middleware/auth')
 const express = require('express')
 const { Schema } = require('mongoose')
 const router = express.Router()
+const mongoose = require('mongoose')
 router.get('/',   async(req, res)=>{
     try{
  const todos = await Todo.find()
@@ -51,22 +52,27 @@ router.put('/:id',  async (req, res)=>{
         date : joi.date()
     }).options({abortEarly : false})
     const {value , error} = schema.validate(req.body)
+    mongoose.set('useFindAndModify', true);
 
     const {name , author , iscomplete, date , uid} =req.body
     const updatetodo = await Todo.findByIdAndUpdate(req.params.id , {name , author , iscomplete, date , uid}, {new : true})
+    res.send(updatetodo)
 } catch(error){
     res.status(500).send(error.message)
     console.log(error.message)
 }
 })
 router.patch('/',  async (req, res)=>{
+    console.log(req)
     try{
+        mongoose.set('useFindAndModify', true);
         const todo = await Todo.findByIdAndUpdate(req.params.id)
         const updatetodo = await Todo.findByIdAndUpdate(req.params.id,{
             iscomplete : !todo.iscomplete,
             
         })
-        res.send(updatetodo);
+       
+        res.send(todo);
     } catch(error){
         res.status(500).send(error.message)
         console.log(error.message)
@@ -75,6 +81,7 @@ router.patch('/',  async (req, res)=>{
 router.delete('/:id',  async(req, res)=>{
     try{
     const deletetodo = await Todo.findByIdAndDelete(req.params.id)
+    mongoose.set('useFindAndModify', true);
     res.send(deletetodo);
 } catch(error){
     res.status(500).send(error.message)

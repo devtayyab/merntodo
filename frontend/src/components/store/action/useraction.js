@@ -1,6 +1,7 @@
 import {url} from '../../../api'
 import {toast} from 'react-toastify'
 import jwtDecode from 'jwt-decode'
+import {useHistory} from 'react-router-dom'
 const axios = require('axios')
 export const signup = (user) =>{
     console.log(user)
@@ -48,6 +49,7 @@ export const signin = (user) =>{
     }
 }
 export const signout = () =>{
+    
     localStorage.removeItem("token")
     return(dispatch) =>{
             dispatch({

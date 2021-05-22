@@ -20,7 +20,10 @@ const useStyles = makeStyles({
     margin:'8px'
   },
   bullet: {
-    
+    backgroundColor: 'red'
+  },
+  editor: {
+    backgroundColor: 'lightgreen'
   },
   action:{
     display: 'block'
@@ -42,7 +45,7 @@ const useStyles = makeStyles({
 const Todos =({todo, settodo})=>{
 const dispatch = useDispatch();
     const classes = useStyles();
-  const  handleupdate =()=>{
+  const  handleupdate =(id)=>{
     settodo(todo)
   }
   const checked=(id)=>{
@@ -73,7 +76,7 @@ return (
       <Button size="small" className={classes.bullet} onClick={()=>deletetod(todo._id)}>
       <DeleteSweepIcon/>
       </Button>
-      <Button size="small" className={classes.bullet} onClick={()=>handleupdate()}>
+      <Button size="small" className={classes.editor} onClick={()=>handleupdate(todo._id)}>
       <EditTwoToneIcon/>
       </Button>
       <Button size="small" className={todo.iscomplete ? classes.complete : null} 

@@ -1,6 +1,6 @@
-const mangoose = require('mongoose')
-
-const todoSchema = new mangoose.Schema({
+const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', true);
+const todoSchema = new mongoose.Schema({
     name : {type : String , required : true , minlength : 3, maxlength: 200},
     author : String,
     uid :String, 
@@ -8,7 +8,7 @@ const todoSchema = new mangoose.Schema({
     date: {type : Date , default : new Date()}
 })
 
-const Todo = mangoose.model("Todo", todoSchema);
+const Todo = mongoose.model("Todo", todoSchema);
 
 
 exports.Todo = Todo;

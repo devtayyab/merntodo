@@ -18,9 +18,7 @@ const todoreducer = (state =[] , action) =>{
                     position: toast.POSITION.BOTTOM_RIGHT
                 }) 
                 
-                // return state.map((todo)=>{
-                //     todo._id === action.todos.data._id ? action.todos : todo 
-                // })
+                return [action.todo]
                 case "CHECKED_TODO":
                     toast.success("Todo is COMPLETED", {
                         position: toast.POSITION.BOTTOM_RIGHT
@@ -28,13 +26,11 @@ const todoreducer = (state =[] , action) =>{
                     return state.map((todo)=>{
                         todo._id = action.todo._id ? action.todo :todo
                     })
-                    case "  DELETE_TODO":
-                        toast.success("Todo is DELETED", {
+                    case "DELETE_TODO":
+                        toast.dark("Todo is DELETED", {
                             position: toast.POSITION.BOTTOM_RIGHT
                         })
-                        // return state.filter((todo)=>{
-                        //     todo._id !== action.todo._id
-                        // })
+                       
             default:
                 return state  
     }

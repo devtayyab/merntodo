@@ -5,11 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import {signout} from '../store/action/useraction'
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import {useHistory} from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 const useStyles = makeStyles((theme) => ({
@@ -39,12 +35,14 @@ export default function Navbar(user) {
     const user1 = {
       name : ""
     }
-  }
-   
+  }   
 const history = useHistory()
   const handleClose = () => {
+    history.push('/signin')
     setAnchorEl(null);
+
     dispatch(signout)
+    
      };
  
 

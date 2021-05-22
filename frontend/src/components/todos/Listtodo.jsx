@@ -8,8 +8,9 @@ export default function Listtodo({settodo}) {
   const todos = useSelector((state)=>state.todos)
   console.log(todos)
   useEffect(() => {
+   
    dispatch(gettodo())
-  }, [dispatch])
+  }, [dispatch,todos])
 
   return (
 

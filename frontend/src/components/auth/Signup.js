@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {signup} from '../store/action/useraction'
 import TextField from '@material-ui/core/TextField';
 import {Button, Card} from '@material-ui/core'
-import {Redirect} from 'react-router-dom'
+import {Redirect ,useHistory} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
   const dispatch=useDispatch()
+  const history = useHistory();
   const auth=useSelector(state=> state.user)
  
   const [user , setuser] = useState({
@@ -26,8 +27,7 @@ export default function SignUp() {
   })
   const handleChange=()=>{
       dispatch(signup(user))
-      console.log(user)
-      console.log(auth)
+     history.goBack()
   }
   if (auth.token) return <Redirect to="/"></Redirect>
   return (

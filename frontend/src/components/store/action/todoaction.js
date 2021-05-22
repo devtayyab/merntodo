@@ -48,7 +48,7 @@ export const updatetodo = (updatedtodo,id) =>{
                 console.log(todo)
             dispatch({
                 type : "UPDATE_TODO",
-                 updatedtodo
+                 todo
             }) 
         })
         .catch(error=>{
@@ -64,7 +64,7 @@ export const checkedtodo = (id) =>{
     return(dispatch) =>{
 
         axios
-        .patch(`${url}/todos/${id}`, {})
+        .patch(`${url}/todos/${id}`, id)
         .then(todo => {
             dispatch({
                 type : "CHECKED_TODO",
