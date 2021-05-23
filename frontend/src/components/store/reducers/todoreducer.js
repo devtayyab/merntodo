@@ -23,9 +23,8 @@ const todoreducer = (state =[] , action) =>{
                     toast.success("Todo is COMPLETED", {
                         position: toast.POSITION.BOTTOM_RIGHT
                     })
-                    return state.map((todo)=>{
-                        todo._id = action.todo._id ? action.todo :todo
-                    })
+                    return [action.todo]
+    
                     case "DELETE_TODO":
                         toast.dark("Todo is DELETED", {
                             position: toast.POSITION.BOTTOM_RIGHT

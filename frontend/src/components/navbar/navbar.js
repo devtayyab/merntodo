@@ -39,6 +39,7 @@ export default function Navbar(user) {
 const history = useHistory()
   const handleClose = () => {
     history.push('/signin')
+   
     setAnchorEl(null);
 
     dispatch(signout)

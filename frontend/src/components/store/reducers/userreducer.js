@@ -16,13 +16,13 @@ const userreducer = (state = IntialState , action)=>{
              })
            const user= jwtDecode(action.payload) 
            console.log(user)
-           return user
+           return user , state
            case "SIGNIN":
             toast("WELLCOME" , {
                 position: toast.POSITION.BOTTOM_RIGHT
             })
             const loguser= jwtDecode(action.payload)
-            return state, loguser
+            return  loguser , state
             case "SIGNOUT":
                 toast("GoodBye" , {
                     position: toast.POSITION.BOTTOM_RIGHT

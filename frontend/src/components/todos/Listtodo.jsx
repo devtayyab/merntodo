@@ -9,7 +9,7 @@ export default function Listtodo({settodo}) {
   console.log(todos)
   useEffect(() => {
    
-   dispatch(gettodo())
+    dispatch(gettodo())
   }, [dispatch,todos])
 
   return (

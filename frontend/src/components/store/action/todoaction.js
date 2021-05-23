@@ -1,4 +1,4 @@
-import {url} from '../../../api'
+import {url, setheader} from '../../../api'
 import {toast} from 'react-toastify'
 const axios = require('axios')
 export const gettodo = () =>{
@@ -6,7 +6,7 @@ export const gettodo = () =>{
     return(dispatch, getstate) =>{
 
         axios
-        .get(`${url}/todos`)
+        .get(`${url}/todos`, setheader())
         .then(todos => {
             dispatch({
                 type : "GET_TODO",
@@ -26,7 +26,7 @@ export const addtodo = (todo) =>{
     return(dispatch, getstate) =>{
 
         axios
-        .post(`${url}/todos`, todo)
+        .post(`${url}/todos`, todo, setheader())
         .then(todo => {
             dispatch({
                 type : "ADD_TODO",
@@ -43,7 +43,7 @@ export const updatetodo = (updatedtodo,id) =>{
     return(dispatch) =>{
 
         axios
-        .put(`${url}/todos/${id}`, updatedtodo)
+        .put(`${url}/todos/${id}`, updatedtodo, setheader())
         .then(todo => {
                 console.log(todo)
             dispatch({
@@ -64,7 +64,7 @@ export const checkedtodo = (id) =>{
     return(dispatch) =>{
 
         axios
-        .patch(`${url}/todos/${id}`, id)
+        .patch(`${url}/todos/${id}`, id , setheader())
         .then(todo => {
             dispatch({
                 type : "CHECKED_TODO",
@@ -84,7 +84,7 @@ export const deletetodo = (id) =>{
     return(dispatch) =>{
 
         axios
-        .delete(`${url}/todos/${id}`)
+        .delete(`${url}/todos/${id}`, setheader())
         .then(() => {
             dispatch({
                 type : "DELETE_TODO",

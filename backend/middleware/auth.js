@@ -10,7 +10,7 @@ try{
 }
 catch(error){
     res.status(400)
-    res.send("invalid token")
+    res.send("please login First")
 }
 }
 module.exports= auth

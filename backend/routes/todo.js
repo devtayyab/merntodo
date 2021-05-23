@@ -5,7 +5,7 @@ const express = require('express')
 const { Schema } = require('mongoose')
 const router = express.Router()
 const mongoose = require('mongoose')
-router.get('/',   async(req, res)=>{
+router.get('/', auth,  async(req, res)=>{
     try{
  const todos = await Todo.find()
  .sort({date: -1})
@@ -17,7 +17,7 @@ router.get('/',   async(req, res)=>{
     }
 }) 
 
-router.post('/',  async (req, res)=> {
+router.post('/', auth ,  async (req, res)=> {
     const schema = joi.object({
         name : joi.string().min(3).max(200).required,
         author : joi.string().min(3).max(30),
@@ -62,7 +62,7 @@ router.put('/:id',  async (req, res)=>{
     console.log(error.message)
 }
 })
-router.patch('/',  async (req, res)=>{
+router.patch('/:id',  async (req, res)=>{
     console.log(req)
     try{
         mongoose.set('useFindAndModify', true);
