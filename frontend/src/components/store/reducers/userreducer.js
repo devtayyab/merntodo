@@ -1,6 +1,6 @@
 import {toast} from 'react-toastify'
 import jwtDecode from 'jwt-decode'
-const IntialState = {
+var IntialState = {
     token : localStorage.getItem("token"),
     name : null,
     email : null,
@@ -16,21 +16,26 @@ const userreducer = (state = IntialState , action)=>{
              })
            const user= jwtDecode(action.payload) 
            console.log(user)
-           return user , state
+           return user , state,{token : action.payload}
            case "SIGNIN":
             toast("WELLCOME" , {
                 position: toast.POSITION.BOTTOM_RIGHT
             })
             const loguser= jwtDecode(action.payload)
-            return  loguser , state
+            return  {token : action.payload}
             case "SIGNOUT":
                 toast("GoodBye" , {
                     position: toast.POSITION.BOTTOM_RIGHT
                 })
                 
-                return state
+                return {token: null}
            default:
-            return state
+            return IntialState = {
+                token : localStorage.getItem("token"),
+                name : null,
+                email : null,
+                password  :null 
+            }
      }
     
        

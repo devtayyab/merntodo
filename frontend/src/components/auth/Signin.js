@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {Button, Card} from '@material-ui/core'
 import {signin} from '../store/action/useraction'
+import { useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -18,12 +19,14 @@ export default function Signin() {
   const dispatch = useDispatch();
   const history = useHistory();
   const auth = useSelector(state => state.user)
-  console.log(auth)
   const classes = useStyles();
   const [user, setuser] = useState({
     email : "",
     password : ""
   })
+  useEffect(()=>{
+  console.log(auth)
+  },[auth])
   const LogIn = (e)=>{
     // e.preventDefault()
     dispatch(signin(user))

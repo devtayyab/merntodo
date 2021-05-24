@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import {signout} from '../store/action/useraction'
 import {useHistory} from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
+import { useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,17 +26,21 @@ export default function Navbar(user) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const auth = useSelector(state => state.user)
+  console.log(auth)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   var user1 = localStorage.getItem("token")
   
   if (user1){
-    var user1 = jwtDecode(user1)
+     user1 = jwtDecode(user1)
   }else{
-    const user1 = {
+     user1 = {
       name : ""
     }
-  }   
+  }  
+  useEffect(()=>{
+    console.log(auth)
+  },[auth]) 
 const history = useHistory()
   const handleClose = () => {
     history.push('/signin')
