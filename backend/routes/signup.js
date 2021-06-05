@@ -25,7 +25,7 @@ try{
   })
   
   const salt=await new bycryp.genSalt(10)
-user.password= await  bycryp.hash(user.password, salt)
+  user.password= await  bycryp.hash(user.password, salt)
 await user.save()
 // res.send("user created" + user)
 const token=     jwt.sign({_id: user._id, name:user.name, email: user.email}, process.env.SECRET_KEY)

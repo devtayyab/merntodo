@@ -13,6 +13,7 @@ app.use(express.json())
 app.use('/api/todos', todo)
 app.use('/api/signup', SignUp)
 app.use('/api/signin', SignIn)
+
 app.get("/", (req,res)=>{
     res.send("wellcome to server")
 })
